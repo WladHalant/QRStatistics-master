@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+    <a class="navbar-brand dropdown" href="{% url 'main_page_url' %}">
+        {{ user.username|title}} |
+
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+<!--            <li class="nav-item active">-->
+<!--&lt;!&ndash;                <a class="nav-link" href="{% url 'main_page_url' %}">HELPDESK<span class="sr-only">(current)</span></a>&ndash;&gt;-->
+<!--            </li>-->
+
+
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'main_page_url' %}">Мои заявки<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'run' %}">К выполнению<span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" data-toggle="modal" href=""data-target="#exampleModal">Создать<span class="sr-only">(current)</span></a>
+                {% include "qr_accounting/modal.html" %}
+            </li>
+                                          <li class="nav-item active">
+                <a class="nav-link" href="{% url 'bye_bye'%}">| Выход<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" action="{% url 'main_page_url' %}">
+            <input name="words" class="form-control mr-sm-2" type="search" placeholder="Поиск по темам:" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Найти заявку</button>
+        </form>
+
+    </div>
+</nav>

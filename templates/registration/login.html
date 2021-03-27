@@ -1,0 +1,45 @@
+{% extends 'qr_accounting/base.html' %}
+{% load static %}
+{% block title %}
+    Вход
+{% endblock %}
+{% block content %}
+<html>
+<body>
+<link rel="stylesheet" href = "{% static "css/blog.css" %}">
+
+</body>
+<div class="login-page">
+  <div class="form">
+                <div class="row">
+    <form method="post" class="login-form" action="{% url 'login' %}">
+      {% csrf_token %}
+<H1>Авторизация</H1>
+        <input class="Primary border border-primary" type="text" name="{{ form.username.html_name }}" placeholder="имя" />
+        <input class="Primary border border-primary" type="password" name="{{ form.password.html_name }}" placeholder="пароль" />
+
+                  <input class="btn btn-primary" type="submit" value="Войти" />
+                    <input class="form-control" type="hidden" name="next" value="{{ next }}" />
+      <p class="message">Не зарегистрированы? <a  href="{% url 'register_url' %}" role="button">Зарегистрироваться</a></p>
+             {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+    </form>
+  </div>
+</div>
+</div>
+
+</html>
+

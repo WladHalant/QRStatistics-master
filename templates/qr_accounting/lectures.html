@@ -1,0 +1,45 @@
+{% extends 'qr_accounting/base.html' %}
+{% block title %}
+    Заявки
+{% endblock %}
+{% block navbar %}
+    {% include 'qr_accounting/navbar.html' %}
+{% endblock %}
+{% block content %}
+    {% for lecture in lectures %}
+        <div class="col-sm-12 col-md-12 col-lg-4 mt-5">
+            <div class="card border border-primary">
+                <div class="card-header bg-transparent border border-primary">{{ lecture.group }}</div>
+                <div class="card-body border border-primary">
+                    <h5 class="card-title" align="center" style="height: 80px; overflow-y: auto">{{ lecture.topic }}</h5>
+                    <p class="card-text" style="height: 100px; overflow-y: auto">{{ lecture.description }}</p>
+                    <a type="button" href="/lecture/{{ lecture.id }}" class="btn btn-outline-success">Редактировать</a>
+          <!-- <a type="button" href="/qgen/{{ lecture.id }}" class="btn btn-outline-danger">Создание QR</a> -->
+                </div>
+                <div class="card-footer border border-primary">
+                    <small class="text-muted">{{ lecture.created_at }}</small>
+                    <br>
+                    <small class="text-muted">{{ lecture.lecturer }}</small>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+{% block pages %}
+    {% if  pages|length > 1 %}
+        <div  class="col-sm-12 col-md-12 col-lg-4 mt-5 offset-md-5">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% for page in pages %}
+                        {% if words %}
+                            <li class="page-item"><a class="page-link" href="{% url 'main_page_url' %}?page={{ page }}&words={{ words }}">{{ page }}</a></li>
+                        {% elif not words %}
+                            <li class="page-item"><a class="page-link" href="{% url 'main_page_url' %}?page={{ page }}">{{ page }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    {% endif %}
+{% endblock %}
+

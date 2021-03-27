@@ -1,0 +1,14 @@
+{% extends 'qr_accounting/base.html' %}
+{% load qr_code %}
+{% block title %}
+    Qr
+{% endblock %}
+{% block content %}
+    <div class="col">
+        <p class="text-center">Для отметки на лекции, отсканируйте  QR-код и ввидите свой телефон</p>
+{#        <a href="{{ link }}">{{ link }}</a>#}
+        <div style="display: flex; align-items: center; justify-content: center;">
+            {% qr_from_text link size="m" image_format="png" error_correction="L" %}
+        </div>
+    </div>
+{% endblock %}

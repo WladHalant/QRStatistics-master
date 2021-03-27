@@ -1,0 +1,33 @@
+{% extends 'qr_accounting/base.html' %}
+{% load static %}
+{% block title %}
+    Lecture
+{% endblock %}
+{% block navbar %}
+    {% include 'qr_accounting/navbar.html' %}
+{% endblock %}
+{% block content %}
+    <div class="col-sm-5">
+        <br>
+        <h3>{{ lecture.topic }}</h3>
+        {% include 'qr_accounting/template_form.html' with path='' id_form='edit_form' form=update_form %}
+        <button name="submit_button" type="submit" form="edit_form" class="btn btn-primary">Сохранить</button>
+        <button name="submit_button" type="submit" form="edit_form" class="btn btn-danger" value="delete">Удалить</button>
+    </div>
+    <div class="col-sm-2 "></div>
+    <div class="col-sm-5">
+        <div class="badge badge-primary text-wrap mt-5" style="width: 6rem;">
+            {{ listener_count }}
+        </div>
+        <ul class="list-group">
+            {% for listener in listeners %}
+                <div class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <p class="mb-1"> Тел.: {{ listener.phone }}</p>
+                        <small> {{ listener.created_at }} </small>
+                    </div>
+                </div>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

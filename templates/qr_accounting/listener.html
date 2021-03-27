@@ -1,0 +1,41 @@
+{% extends 'qr_accounting/base.html' %}
+{% block title %}
+    Создать заявку
+{% endblock %}
+{% block listner %}
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">{{topic}}</h1>
+            <p class="lead">{{ description }}</p>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="col-sm-10 offset-sm-1 text-center">
+        {% if message_danger != null %}
+            <div class="alert alert-danger">
+                {{ message_danger }}
+            </div>
+        {% endif %}
+        {% if message_successful != null %}
+            <div class="alert alert-success">
+                {{ message_successful }}
+            </div>
+        {% endif %}
+        <form id="modal-form" method="post" class="justify-content-center">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    {% if field.errors %}
+                        <div class="alert alert-danger">
+                            {{ field.errors }}
+                        </div>
+                    {% endif %}
+                    {{ field.label }}
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary btn-lg">Отправить</button>
+        </form>
+    </div>
+{% endblock %}
