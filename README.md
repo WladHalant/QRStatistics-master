@@ -12,5 +12,6 @@ python manage.py makemigrations qr_accounting
 python manage.py migrate
 
 python manage.py createsuperuser
+
 #Запуск сервера
 python manage.py runserver
